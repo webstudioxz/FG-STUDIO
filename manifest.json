@@ -1,0 +1,37 @@
+{
+  "name": "FG-Studio - Catálogos Digitales Profesionales",
+  "short_name": "FG-Studio",
+  "description": "Automatiza tu negocio con catálogos digitales ultrarrápidos. IA, realidad aumentada y diseño futurista.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c15",
+  "theme_color": "#0a0c15",
+  "orientation": "portrait",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Contactar",
+      "url": "/contactar",
+      "description": "Envíanos un mensaje"
+    },
+    {
+      "name": "Acerca de",
+      "url": "/hacercade",
+      "description": "Conoce FG-Studio"
+    }
+  ]
+}
