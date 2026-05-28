@@ -464,7 +464,7 @@ app.delete('/api/contactos/:id', async (req, res) => {
 app.get('/api/supabase-config', (req, res) => {
     // Estas variables deben estar en Render.com Environment Variables
     res.json({
-        url: process.env.SUPABASE_PROYECTO,
+        url: process.env.SUPABASE_URL,
         anonKey: process.env.SUPABASE_ANON_KEY
     });
 });
