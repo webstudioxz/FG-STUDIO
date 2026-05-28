@@ -1,0 +1,23 @@
+{
+  "name": "FG-Studio",
+  "short_name": "FG-Studio",
+  "description": "Catálogos digitales profesionales y automatización comercial con IA",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c15",
+  "theme_color": "#0a0c15",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}

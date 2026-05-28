@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FG-Studio | Catálogos Digitales Futuristas - Innovación y Automatización</title>
+    <meta name="description" content="Automatiza tu negocio con catálogos digitales ultrarrápidos. IA, realidad aumentada y diseño futurista para maximizar tus conversiones.">
+    <meta name="keywords" content="catálogos digitales, automatización, IA, realidad aumentada, FG-Studio, catálogos online, ventas digitales">
+    <meta name="author" content="FG-Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0c15">
+    <link rel="canonical" href="https://pacho-fg.onrender.com">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg">
+    <link rel="manifest" href="/manifest.json">
+    
+    <meta property="og:title" content="FG-Studio - Catálogos Digitales Profesionales">
+    <meta property="og:description" content="Automatiza tu negocio, vende más con catálogos digitales modernos, rápidos y seguros.">
+    <meta property="og:image" content="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://pacho-fg.onrender.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://i.ibb.co" crossorigin>
+    
+    <link rel="preload" as="image" href="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg" fetchpriority="high">
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#2dd4bf;--primary-dark:#14b8a6;--secondary:#3b82f6;--dark-bg:#0a0c15;--card-bg:rgba(17,24,39,.7);--light-text:#f9fafb;--gray-text:#cbd5e1;--radius:1.25rem}
+        body{background:radial-gradient(circle at 20% 30%,#0b0e1a,#020408);color:var(--light-text);font-family:'Space Grotesk','Inter',system-ui,sans-serif;overflow-x:hidden;min-height:100vh;line-height:1.6}
+        .hero{padding:2rem 0 1rem;text-align:center;min-height:280px}
+        .flip-container{perspective:1500px;margin:1.5rem auto;max-width:750px;cursor:pointer}
+        .flipper{position:relative;width:100%;padding-bottom:56%}
+        .front,.back{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:var(--radius);backface-visibility:hidden}
+        .front{z-index:2;transform:rotateY(0deg)}
+        .back{transform:rotateY(180deg);overflow:hidden}
+        .banner-img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius);display:block}
+        .flip-container:hover .flipper,.flip-container:focus-within .flipper{transform:rotateY(180deg)}
+        .flipper{transition:transform .6s cubic-bezier(.23,1,.32,1);transform-style:preserve-3d}
+        .catalog-card{background:var(--card-bg);backdrop-filter:blur(12px);border-radius:var(--radius);overflow:hidden;border:1px solid rgba(45,212,191,.4);display:flex;flex-direction:column;transition:transform .3s,border-color .3s,box-shadow .3s}
+        .catalog-card:hover{transform:translateY(-5px);border-color:var(--secondary);box-shadow:0 0 20px rgba(45,212,191,.4)}
+        .catalog-img{width:100%;height:240px;object-fit:cover;aspect-ratio:4/3;background:#1e293b}
+        .catalog-swiper-placeholder{min-height:450px}
+        .scroll-top{position:fixed;bottom:25px;right:25px;background:var(--primary);width:45px;height:45px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s;z-index:99;border:none;color:#0a0c15;font-size:1.1rem}
+        .scroll-top.active{opacity:1}
+        .scroll-top:focus-visible{outline:2px solid #fff;outline-offset:2px}
+        .loading-spinner{text-align:center;padding:40px;color:var(--primary)}
+        .hero-title,.section-title{background:linear-gradient(to right,#fff,var(--secondary),var(--primary));-webkit-background-clip:text;background-clip:text;color:transparent}
+        .hero-title{font-size:3.5rem;font-weight:800;font-family:'Space Grotesk',monospace;line-height:1.2}
+        .section-title{font-size:2.5rem;font-weight:700;margin-bottom:1rem}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+        .focus-visible:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        button{background:none;border:none;cursor:pointer;font-family:inherit}
+        #particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.4}
+        .blob{position:fixed;width:45vw;height:45vw;border-radius:50%;filter:blur(90px);z-index:-1;pointer-events:none;animation:floatBlob 20s infinite alternate}
+        .blob-1{top:-15%;left:-10%;background:radial-gradient(circle,rgba(45,212,191,.2),transparent 70%)}
+        .blob-2{bottom:-10%;right:-5%;width:50vw;height:50vw;background:radial-gradient(circle,rgba(59,130,246,.2),transparent);animation-duration:25s}
+        @keyframes floatBlob{0%{transform:translate(0,0) scale(1)}100%{transform:translate(5%,8%) scale(1.2)}}
+        .badge-modern{background:rgba(45,212,191,.2);backdrop-filter:blur(8px);border:1px solid rgba(45,212,191,.6);padding:.5rem 1.2rem;border-radius:60px;font-size:.85rem;font-weight:600;display:inline-block}
+        .catalog-swiper{width:100%;padding:40px 0 60px;overflow:hidden}
+        .catalog-swiper .swiper-slide{width:320px;height:auto;transition:all .5s ease;opacity:.5;transform:scale(.85)}
+        .catalog-swiper .swiper-slide-active{opacity:1;transform:scale(1);z-index:10}
+        .catalog-info{padding:1.3rem;flex:1}
+        .catalog-title{font-weight:700;font-size:1.2rem;color:#fff;margin:0 0 5px}
+        .catalog-desc{font-size:.8rem;color:var(--gray-text);margin-top:6px;display:block}
+        .feature-card{background:rgba(17,24,39,.6);backdrop-filter:blur(8px);border-radius:var(--radius);padding:2rem;text-align:center;border:1px solid rgba(45,212,191,.3);height:100%;transition:all .3s}
+        .feature-card:hover{transform:translateY(-8px);border-color:var(--secondary);box-shadow:0 0 25px rgba(45,212,191,.3)}
+        .feature-icon{font-size:2.8rem;color:var(--primary)}
+        .manifesto-block{background:linear-gradient(125deg,rgba(15,23,42,.8),rgba(17,24,39,.8));backdrop-filter:blur(12px);border-radius:var(--radius);padding:3rem 2rem;border:1px solid rgba(45,212,191,.5)}
+        .footer{background:#010101cc;backdrop-filter:blur(8px);border-top:1px solid var(--primary);padding:3rem 0 1.5rem;margin-top:4rem}
+        .btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:none;transition:all .2s;color:#0a0c15;font-weight:600;font-family:inherit}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,212,191,.4);color:#0a0c15}
+        .btn-primary:focus-visible{outline:2px solid #fff;outline-offset:2px}
+        .btn-outline-light{transition:all .2s;color:#fff;border-color:rgba(255,255,255,.3);font-family:inherit}
+        .btn-outline-light:hover{background:rgba(255,255,255,.1);color:#fff}
+        .btn-outline-light:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        .text-secondary{color:#94a3b8!important}
+        a.text-secondary{color:#94a3b8!important;text-decoration:none}
+        a.text-secondary:hover{color:var(--primary)!important}
+        .list-unstyled{list-style:none;padding-left:0}
+        .bg-primary{background-color:var(--primary)!important}
+        .bg-secondary{background-color:#334155!important}
+        .small{font-size:.8rem}
+        @media(max-width:768px){.hero-title{font-size:2.4rem}.section-title{font-size:1.8rem}.catalog-swiper .swiper-slide{width:280px}}
+        @media(prefers-reduced-motion:reduce){.blob,.flipper,.catalog-card,.feature-card,.btn-primary,.btn-outline-light,.scroll-top{animation:none!important;transition:none!important}.catalog-swiper .swiper-slide{transition:none!important}#particles-canvas{display:none}}
+    </style>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "FG-Studio",
+        "url": "https://pacho-fg.onrender.com",
+        "description": "Catálogos digitales profesionales y automatización comercial con IA.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://pacho-fg.onrender.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+<body>
+
+<canvas id="particles-canvas" aria-hidden="true"></canvas>
+<div class="blob blob-1" aria-hidden="true"></div>
+<div class="blob blob-2" aria-hidden="true"></div>
+
+<main>
+    <div class="container">
+        <section class="hero" aria-labelledby="mainHeading">
+            <span class="badge-modern"><i class="fas fa-crown" aria-hidden="true"></i> Innovación 4.0</span>
+            <h1 class="hero-title" id="mainHeading">Revolucione su Negocio con<br>Catálogos Digitales Inteligentes</h1>
+            <p class="text-secondary mt-3 fs-5">Automatización con IA · Diseño 3D · Conversión asegurada</p>
+            
+            <div class="flip-container" tabindex="0" role="img" aria-label="FG-Studio - Catálogo Digital. Pasa el cursor o enfoca para ver más.">
+                <div class="flipper">
+                    <div class="front">
+                        <img src="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg" 
+                             alt="FG-Studio Catálogo Digital - Innovación y tecnología" 
+                             class="banner-img" 
+                             fetchpriority="high" 
+                             width="750" height="420" decoding="async">
+                    </div>
+                    <div class="back">
+                        <img src="https://image2url.com/r2/default/images/1774574969101-c816d5fe-1e85-4cd1-9075-77a8006efbfd.png" 
+                             alt="FG-Studio - Tecnología futurista y automatización" 
+                             class="banner-img" 
+                             loading="lazy" width="750" height="420" decoding="async">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-3">
+                <a href="hacercade.html" class="btn btn-primary px-4 py-2 rounded-pill focus-visible">
+                    <i class="fas fa-info-circle" aria-hidden="true"></i> Conoce más
+                </a>
+                <a href="contactar.html" class="btn btn-outline-light px-4 py-2 rounded-pill focus-visible">
+                    <i class="fas fa-envelope" aria-hidden="true"></i> Contáctanos
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-4" aria-labelledby="catalogsHeading">
+            <div class="text-center">
+                <h2 class="section-title" id="catalogsHeading">Catálogos Experienciales</h2>
+                <div style="width:80px;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));margin:.5rem auto;" aria-hidden="true"></div>
+                <p class="text-secondary">Desliza para explorar nuestros servicios</p>
+            </div>
+            <div class="catalog-swiper swiper" style="min-height:450px;" role="region" aria-label="Carrusel de catálogos" aria-roledescription="carrusel">
+                <div class="swiper-wrapper" id="catalogSwiperWrapper">
+                    <div class="swiper-slide" aria-roledescription="diapositiva" aria-label="Cargando catálogos">
+                        <div class="loading-spinner" role="status" aria-live="polite">
+                            <i class="fas fa-spinner fa-spin fa-3x" aria-hidden="true"></i>
+                            <p class="mt-3">Cargando catálogos...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-3" aria-label="Navegación del carrusel"></div>
+            </div>
+        </section>
+
+        <section class="row g-4 my-5" aria-labelledby="featuresHeading">
+            <h2 class="sr-only" id="featuresHeading">Características principales</h2>
+            <div class="col-md-4">
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><i class="fas fa-brain"></i></div>
+                    <h3 class="h4">IA Predictiva</h3>
+                    <p class="text-secondary">Algoritmos que anticipan tendencias y optimizan tu inventario.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><i class="fas fa-vr-cardboard"></i></div>
+                    <h3 class="h4">Realidad Aumentada</h3>
+                    <p class="text-secondary">Visualiza productos en 3D antes de comprar.</p>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="h4">Automatización Total</h3>
+                    <p class="text-secondary">Integración con WhatsApp, redes y e-commerce.</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="manifesto-block text-center my-5" role="complementary" aria-labelledby="manifestoHeading">
+            <h2 class="h3 fw-bold" id="manifestoHeading"><i class="fas fa-satellite-dish" style="color:#f59e0b;" aria-hidden="true"></i> Misión 2030</h2>
+            <p class="fs-5 mt-3">Automatizamos tu negocio con catálogos que venden por ti.</p>
+            <div class="mt-4">
+                <span class="badge bg-primary px-3 py-2" style="font-size:.9rem;"><i class="fas fa-bolt" aria-hidden="true"></i> FG-Studio: potencia imparable</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-4">
+                <h2 class="h5"><i class="fas fa-cube" style="color:var(--primary);" aria-hidden="true"></i> FG-Studio</h2>
+                <p class="text-secondary">Catálogos digitales profesionales y automatización comercial.</p>
+                <nav class="d-flex gap-3" aria-label="Redes sociales">
+                    <a href="https://www.facebook.com/share/18aBXWunUa/" target="_blank" rel="noopener noreferrer" class="text-white fs-4 focus-visible" aria-label="Facebook de FG-Studio"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/fgstudio" target="_blank" rel="noopener noreferrer" class="text-white fs-4 focus-visible" aria-label="Instagram de FG-Studio"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/5353571569" target="_blank" rel="noopener noreferrer" class="text-white fs-4 focus-visible" aria-label="WhatsApp de FG-Studio"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                </nav>
+            </div>
+            <div class="col-md-2">
+                <h2 class="h6">Enlaces</h2>
+                <ul class="list-unstyled">
+                    <li><a href="/" class="text-secondary focus-visible">Inicio</a></li>
+                    <li><a href="hacercade.html" class="text-secondary focus-visible">Nosotros</a></li>
+                    <li><a href="contactar.html" class="text-secondary focus-visible">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h2 class="h6">Contacto</h2>
+                <address style="font-style:normal;" class="text-secondary">
+                    <p class="mb-2"><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:webstudioxz@gmail.com" class="text-secondary focus-visible">webstudioxz@gmail.com</a></p>
+                    <p class="mb-2"><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:+5353571569" class="text-secondary focus-visible">+53 5357-15-69</a></p>
+                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Centro Habana, Manrrique #563</p>
+                </address>
+            </div>
+        </div>
+        <hr style="background:#334155;" aria-hidden="true">
+        <p class="text-center text-secondary small">&copy; 2026 FG-Studio. Futuro digital con propósito.</p>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+<script>
+    (function() {
+        'use strict';
+        let catalogSwiper = null;
+        const API_URL = window.location.origin;
+
+        // Cache de escape
+        const _ec = new Map();
+        function escapeHtml(str) {
+            if (!str) return '';
+            if (_ec.has(str)) return _ec.get(str);
+            const r = str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+            if (_ec.size > 300) _ec.clear();
+            _ec.set(str, r);
+            return r;
+        }
+
+        // Respetar preferencia de movimiento reducido
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(initNonCritical, { timeout: 2000 });
+        } else {
+            setTimeout(initNonCritical, 100);
+        }
+
+        async function initNonCritical() {
+            if (!prefersReducedMotion) initParticles();
+            await loadCatalogos();
+            initScrollTop();
+        }
+
+        async function loadCatalogos() {
+            const wrapper = document.getElementById('catalogSwiperWrapper');
+            if (!wrapper) return;
+            try {
+                const controller = new AbortController();
+                const tid = setTimeout(() => controller.abort(), 5000);
+                const response = await fetch(`${API_URL}/api/catalogos`, { signal: controller.signal });
+                clearTimeout(tid);
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const catalogos = await response.json();
+                if (!catalogos || catalogos.length === 0) { wrapper.innerHTML = emptyHTML(); return; }
+                wrapper.innerHTML = catalogos.map((cat, idx) => `
+                    <div class="swiper-slide" aria-roledescription="diapositiva" aria-label="Catálogo ${idx+1} de ${catalogos.length}: ${escapeHtml(cat.name)}">
+                        <a href="${escapeHtml(cat.link)}" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
+                            <div class="catalog-card">
+                                <img src="${escapeHtml(cat.image)}" 
+                                     class="catalog-img" 
+                                     alt="Catálogo digital: ${escapeHtml(cat.name)} - ${escapeHtml(cat.category)}"
+                                     loading="lazy" width="320" height="240" decoding="async"
+                                     onerror="this.alt='Sin imagen';this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27320%27 height=%27240%27%3E%3Crect fill=%27%231e293b%27 width=%27320%27 height=%27240%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 fill=%27%2394a3b8%27 font-family=%27sans-serif%27 font-size=%2716%27%3ESin Imagen%3C/text%3E%3C/svg%3E'">
+                                <div class="catalog-info">
+                                    <span class="badge bg-secondary mb-1">${escapeHtml(cat.category).toUpperCase()}</span>
+                                    <h3 class="catalog-title">${escapeHtml(cat.name)}</h3>
+                                    <p class="catalog-desc">${escapeHtml(cat.descripcion || 'Sin descripción')}</p>
+                                    <div class="mt-2"><i class="fas fa-arrow-right" style="color:var(--primary);" aria-hidden="true"></i> <span class="small" style="color:#fff;">Explorar</span></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `).join('');
+                initSwiperLogic(catalogos.length);
+            } catch (error) {
+                console.warn('Error loading catalogs:', error.message);
+                if (wrapper) wrapper.innerHTML = errorHTML();
+            }
+        }
+
+        function initSwiperLogic(totalSlides) {
+            if (catalogSwiper) catalogSwiper.destroy(true, true);
+            function tryInit() {
+                if (typeof Swiper === 'undefined') return false;
+                catalogSwiper = new Swiper('.catalog-swiper', {
+                    effect: prefersReducedMotion ? 'slide' : 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    coverflowEffect: { rotate:30, stretch:0, depth:150, modifier:1.5, slideShadows:false },
+                    loop: totalSlides >= 3,
+                    autoplay: prefersReducedMotion ? false : { delay:4000, disableOnInteraction:false, pauseOnMouseEnter:true },
+                    speed: prefersReducedMotion ? 0 : 800,
+                    pagination: { el:'.swiper-pagination', clickable:true },
+                    spaceBetween: 20,
+                    breakpoints: { 640:{slidesPerView:2,centeredSlides:false}, 1024:{slidesPerView:3,centeredSlides:true} },
+                    a11y: { prevSlideMessage:'Anterior', nextSlideMessage:'Siguiente', firstSlideMessage:'Primera diapositiva', lastSlideMessage:'Última diapositiva' }
+                });
+                return true;
+            }
+            if (!tryInit()) window.addEventListener('load', tryInit, { once:true });
+        }
+
+        function emptyHTML() {
+            return `<div class="swiper-slide" aria-roledescription="diapositiva"><div class="text-center p-5" style="background:rgba(17,24,39,.7);border-radius:20px;"><i class="fas fa-store fa-4x mb-3" style="color:#475569;" aria-hidden="true"></i><h3 class="h5">No hay catálogos disponibles</h3><p class="text-secondary">Pronto agregaremos nuevos servicios</p></div></div>`;
+        }
+        function errorHTML() {
+            return `<div class="swiper-slide" aria-roledescription="diapositiva"><div class="text-center p-5" style="background:rgba(17,24,39,.7);border-radius:20px;" role="alert"><i class="fas fa-exclamation-triangle fa-4x mb-3" style="color:#f59e0b;" aria-hidden="true"></i><h3 class="h5">Error al cargar</h3><button class="btn btn-primary btn-sm mt-2" onclick="location.reload()" aria-label="Reintentar carga"><i class="fas fa-sync-alt" aria-hidden="true"></i> Reintentar</button></div></div>`;
+        }
+
+        function initParticles() {
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h, animId;
+            function resize() { w=window.innerWidth; h=window.innerHeight; canvas.width=w; canvas.height=h; }
+            resize();
+            const COUNT = Math.min(50, Math.floor(w*h/25000));
+            const particles = Array.from({length:COUNT}, ()=>({
+                x:Math.random()*w, y:Math.random()*h,
+                r:Math.random()*2+.5, a:Math.random()*.3,
+                sx:(Math.random()-.5)*.15, sy:(Math.random()-.5)*.1
+            }));
+            function draw() {
+                ctx.clearRect(0,0,w,h);
+                for (const p of particles) {
+                    p.x+=p.sx; p.y+=p.sy;
+                    if(p.x<0)p.x=w; if(p.x>w)p.x=0;
+                    if(p.y<0)p.y=h; if(p.y>h)p.y=0;
+                    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.2832);
+                    ctx.fillStyle=`rgba(45,212,191,${p.a})`; ctx.fill();
+                }
+                animId = requestAnimationFrame(draw);
+            }
+            draw();
+            let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(resize,200);},{passive:true});
+            window.addEventListener('beforeunload',()=>{cancelAnimationFrame(animId);},{once:true});
+        }
+
+        function initScrollTop() {
+            const btn = document.getElementById('scrollTop');
+            if (!btn) return;
+            let ticking = false;
+            window.addEventListener('scroll', ()=>{
+                if(!ticking){requestAnimationFrame(()=>{btn.classList.toggle('active',window.scrollY>400);ticking=false;});ticking=true;}
+            },{passive:true});
+            btn.addEventListener('click', e=>{e.preventDefault();window.scrollTo({top:0,behavior:prefersReducedMotion?'auto':'smooth'});});
+        }
+    })();
+</script>
+</body>
+</html>

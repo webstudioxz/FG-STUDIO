@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0f172a">
+    <title>Panel Admin | FG-Studio</title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--primary:#3b82f6;--success:#10b981;--danger:#ef4444;--dark:#1e293b;--text:#1e293b;--text-muted:#475569;--border:#e2e8f0;--bg:#f1f5f9}
+        body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+        .admin-wrapper{display:flex;min-height:100vh}
+        .sidebar{width:250px;background:linear-gradient(180deg,#0f172a,#1e293b);color:#fff;position:fixed;height:100vh;overflow-y:auto;z-index:1000;transition:left .3s ease;left:0}
+        .sidebar-header{padding:20px 15px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
+        .sidebar-header .logo{width:45px;height:45px;border-radius:10px;margin-bottom:8px;display:inline-block;object-fit:cover}
+        .sidebar-header h4{margin:0;font-size:1rem}
+        .sidebar-header small{color:#94a3b8;font-size:.7rem}
+        .sidebar-menu{padding:10px 0;list-style:none}
+        .sidebar-section{padding:8px 15px;font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:#64748b;margin-top:8px}
+        .menu-item{padding:10px 15px;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .2s;border-left:3px solid transparent;color:#cbd5e1;font-size:.9rem;background:none;border-top:none;border-right:none;border-bottom:none;width:100%;text-align:left;font-family:inherit}
+        .menu-item:hover{background:rgba(255,255,255,.05);color:#fff}
+        .menu-item.active{background:rgba(59,130,246,.2);border-left-color:var(--primary);color:#fff}
+        .menu-item:focus-visible{outline:2px solid var(--primary);outline-offset:-2px;border-radius:4px}
+        .menu-item i{width:18px;text-align:center}
+        .menu-badge{background:var(--primary);color:#fff;padding:2px 6px;border-radius:10px;font-size:.65rem;margin-left:auto}
+        .main-content{flex:1;margin-left:250px;padding:15px;min-height:100vh}
+        .top-bar{background:#fff;border-radius:12px;padding:15px 20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+        .top-bar h4{margin:0;font-size:1.1rem}
+        .content-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+        .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:20px}
+        .stat-card{background:#fff;border-radius:12px;padding:15px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+        .stat-card .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;margin-bottom:10px}
+        .stat-card .number{font-size:1.5rem;font-weight:700}
+        .stat-card .label{color:var(--text-muted);font-size:.8rem}
+        .btn-modern{padding:8px 14px;border-radius:8px;font-weight:500;font-size:.85rem;border:none;cursor:pointer;transition:all .2s;font-family:inherit;display:inline-flex;align-items:center;gap:4px}
+        .btn-modern:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        .btn-primary-modern{background:var(--primary);color:#fff}
+        .btn-primary-modern:hover{background:#2563eb}
+        .btn-danger-modern{background:var(--danger);color:#fff}
+        .btn-danger-modern:hover{background:#dc2626}
+        .btn-outline-modern{background:#fff;border:1px solid var(--border);color:var(--text-muted)}
+        .btn-outline-modern:hover{background:#f8fafc}
+        .btn-sm-modern{padding:5px 8px;font-size:.75rem}
+        .table-modern{width:100%;border-collapse:collapse;font-size:.85rem}
+        .table-modern th{background:#f8fafc;padding:10px 12px;text-align:left;font-weight:600;color:var(--text-muted);border-bottom:2px solid var(--border)}
+        .table-modern td{padding:10px 12px;border-bottom:1px solid #f1f5f9}
+        .tabs-container{display:flex;gap:3px;margin-bottom:15px;border-bottom:2px solid var(--border);overflow-x:auto}
+        .tab-btn{padding:8px 14px;border:none;background:none;font-weight:500;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;font-size:.8rem;transition:all .2s;font-family:inherit}
+        .tab-btn.active{color:var(--primary);border-bottom-color:var(--primary)}
+        .tab-btn:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        .modal-backdrop-custom{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:2000;display:flex;align-items:center;justify-content:center;padding:15px}
+        .modal-custom{background:#fff;border-radius:16px;padding:25px;width:100%;max-width:500px;max-height:85vh;overflow-y:auto}
+        .modal-header-custom{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+        .form-label{display:block;font-weight:500;font-size:.85rem;margin-bottom:4px;color:var(--text)}
+        .form-control-modern{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:.9rem;margin-bottom:12px;transition:border-color .2s,box-shadow .2s;font-family:inherit;background:#fff;color:var(--text)}
+        .form-control-modern:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+        .progress-bar-custom{width:100%;background:var(--border);border-radius:8px;overflow:hidden}
+        .progress-fill{width:0%;height:4px;background:var(--primary);transition:width .3s}
+        .menu-toggle{display:none;position:fixed;top:10px;left:10px;z-index:1100;background:var(--dark);color:#fff;border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;font-size:1.2rem;align-items:center;justify-content:center}
+        .menu-toggle:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+        .sidebar-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);z-index:999}
+        .sidebar-overlay.show{display:block}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+        .text-muted{color:var(--text-muted)!important}
+        .text-center{text-align:center}
+        .d-flex{display:flex}
+        .justify-content-between{justify-content:space-between}
+        .justify-content-center{justify-content:center}
+        .align-items-center{align-items:center}
+        .flex-wrap{flex-wrap:wrap}
+        .mb-2{margin-bottom:.5rem}
+        .mb-3{margin-bottom:1rem}
+        .mb-4{margin-bottom:1.5rem}
+        .mt-2{margin-top:.5rem}
+        .mt-3{margin-top:1rem}
+        .me-1{margin-right:.25rem}
+        .me-2{margin-right:.5rem}
+        .ms-auto{margin-left:auto}
+        .w-100{width:100%}
+        .py-2{padding-top:.5rem;padding-bottom:.5rem}
+        .py-4{padding-top:1.5rem;padding-bottom:1.5rem}
+        .border{border:1px solid var(--border)}
+        .rounded{border-radius:8px}
+        .small{font-size:.8rem}
+        @media(max-width:768px){
+            .menu-toggle{display:flex}
+            .sidebar{left:-250px;width:250px}
+            .sidebar.open{left:0}
+            .main-content{margin-left:0;padding:10px;padding-top:55px}
+            .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+            .stat-card{padding:12px}
+            .stat-card .number{font-size:1.2rem}
+            .top-bar{padding:12px 15px;flex-direction:column;align-items:flex-start}
+            .table-modern{font-size:.75rem}
+            .table-modern th,.table-modern td{padding:8px 6px}
+            .tabs-container{gap:0}
+            .tab-btn{padding:6px 10px;font-size:.7rem}
+            .modal-custom{margin:10px;padding:20px}
+        }
+        @media(max-width:480px){
+            .stats-grid{grid-template-columns:1fr}
+            .table-modern{font-size:.7rem}
+            .table-modern th,.table-modern td{padding:6px 8px}
+            .btn-sm-modern{padding:4px 6px;font-size:.7rem}
+            .modal-custom{margin:5px;padding:15px;max-width:100%;border-radius:12px}
+            .content-card{padding:12px}
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="sidebar">☰</button>
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+    <div id="app" role="application" aria-label="Panel de administración FG-Studio"></div>
+    
+    <script>
+        // ============================================
+        // UTILIDADES - Escape HTML con cache para rendimiento
+        // ============================================
+        const _escapeCache = new Map();
+        function escapeHtml(str) {
+            if (!str) return '';
+            if (typeof str !== 'string') str = String(str);
+            if (_escapeCache.has(str)) return _escapeCache.get(str);
+            const result = str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+            if (_escapeCache.size > 500) _escapeCache.clear();
+            _escapeCache.set(str, result);
+            return result;
+        }
+        function escapeAttr(str) {
+            if (!str) return '';
+            return escapeHtml(str);
+        }
+
+        // ============================================
+        // CONFIGURACIÓN
+        // ============================================
+        let supabaseClient = null;
+        let supabaseInitialized = false;
+        const API_URL = window.location.origin;
+        let isLoggedIn = false;
+        let currentData = { contactos: [], pedidos: [], catalogos: [], acercade: {} };
+        let currentTab = 'dashboard';
+        let acercadeSubTab = 'hero';
+        let editingCatalogoId = null;
+        let _refreshTimer = null;
+        let _lastFocusBeforeModal = null;
+
+        // ============================================
+        // GESTIÓN DE FOCO EN MODALES (Accesibilidad)
+        // ============================================
+        function trapFocus(modal) {
+            const focusable = modal.querySelectorAll('button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), a[href]');
+            if (focusable.length === 0) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            first.focus();
+            modal.addEventListener('keydown', function handler(e) {
+                if (e.key === 'Tab') {
+                    if (e.shiftKey) {
+                        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                    } else {
+                        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                    }
+                }
+                if (e.key === 'Escape') { closeCatalogoModal(); }
+                modal.removeEventListener('keydown', handler);
+            });
+        }
+
+        // ============================================
+        // INICIALIZAR SUPABASE
+        // ============================================
+        async function initSupabase() {
+            try {
+                const response = await fetch(`${API_URL}/api/supabase-config`);
+                if (!response.ok) throw new Error('Error al obtener configuración');
+                const config = await response.json();
+                if (config.url && config.anonKey && typeof supabase !== 'undefined') {
+                    supabaseClient = supabase.createClient(config.url, config.anonKey);
+                    supabaseInitialized = true;
+                }
+            } catch (error) {
+                console.warn('Supabase no disponible:', error.message);
+            }
+        }
+
+        // ============================================
+        // SUBIR IMAGEN A SUPABASE
+        // ============================================
+        async function uploadImageToSupabase(file) {
+            if (!supabaseClient || !supabaseInitialized) {
+                alert('Supabase no está listo. Espera un momento.');
+                return null;
+            }
+            if (!file) { alert('No hay archivo seleccionado'); return null; }
+            const allowedTypes = ['image/jpeg','image/jpg','image/png','image/webp'];
+            if (!allowedTypes.includes(file.type)) { alert('Formato no permitido. Usa JPG, PNG o WebP'); return null; }
+            if (file.size > 2 * 1024 * 1024) { alert('La imagen no debe superar los 2MB'); return null; }
+            const fileExt = file.name.split('.').pop();
+            const fileName = `catalogos/${Date.now()}-${Math.random().toString(36).substring(2,10)}.${fileExt}`;
+            try {
+                const { data, error } = await supabaseClient.storage.from('catalogos-imagenes').upload(fileName, file, { cacheControl:'31536000', upsert:false, contentType:file.type });
+                if (error) {
+                    if (error.message.includes('bucket not found')) alert('El bucket "catalogos-imagenes" no existe.');
+                    else if (error.message.includes('permission')) alert('Error de permisos en el bucket.');
+                    else alert('Error al subir: ' + error.message);
+                    return null;
+                }
+                const { data: pub } = supabaseClient.storage.from('catalogos-imagenes').getPublicUrl(fileName);
+                return pub.publicUrl;
+            } catch (error) {
+                alert('Error de conexión: ' + error.message);
+                return null;
+            }
+        }
+
+        // ============================================
+        // AUTENTICACIÓN
+        // ============================================
+        function checkAuth() {
+            const token = localStorage.getItem('admin_token');
+            if (token === 'logged_in') { isLoggedIn = true; renderAdmin(); loadData(); initSupabase(); startRefreshTimer(); }
+            else { renderLogin(); }
+        }
+
+        function startRefreshTimer() {
+            if (_refreshTimer) clearInterval(_refreshTimer);
+            _refreshTimer = setInterval(() => {
+                if (isLoggedIn && !document.hidden) loadData();
+            }, 30000);
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && isLoggedIn) loadData();
+            }, { once: false, passive: true });
+        }
+
+        function renderLogin() {
+            document.getElementById('app').innerHTML = `
+                <div style="display:flex;justify-content:center;align-items:center;min-height:100vh;background:linear-gradient(135deg,#0f172a,#1e293b);padding:20px;">
+                    <div style="background:#fff;border-radius:20px;padding:30px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.3);">
+                        <div class="sr-only"><h1>Iniciar sesión - Panel de Administración</h1></div>
+                        <i class="fas fa-shield-alt fa-3x mb-3" style="color:#3b82f6;" aria-hidden="true"></i>
+                        <h2 class="mb-2">Panel Admin</h2>
+                        <p class="text-muted mb-4">FG-Studio</p>
+                        <label for="adminPassword" class="sr-only">Contraseña</label>
+                        <input type="password" id="adminPassword" class="form-control-modern" placeholder="Contraseña" autocomplete="current-password" required aria-required="true">
+                        <button id="loginBtn" class="btn-modern btn-primary-modern w-100 py-2 mt-2"><i class="fas fa-lock" aria-hidden="true"></i> Acceder</button>
+                    </div>
+                </div>`;
+            document.getElementById('loginBtn').addEventListener('click', doLogin);
+            document.getElementById('adminPassword').addEventListener('keypress', e => { if (e.key === 'Enter') doLogin(); });
+            document.getElementById('adminPassword').focus();
+        }
+
+        async function doLogin() {
+            const pwd = document.getElementById('adminPassword').value;
+            const btn = document.getElementById('loginBtn');
+            if (!pwd) { alert('Ingrese la contraseña'); document.getElementById('adminPassword').focus(); return; }
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Verificando...'; btn.disabled = true;
+            try {
+                const res = await fetch(`${API_URL}/api/verify-admin`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({password:pwd}) });
+                const data = await res.json();
+                if (data.success) { localStorage.setItem('admin_token','logged_in'); isLoggedIn = true; renderAdmin(); loadData(); initSupabase(); startRefreshTimer(); }
+                else { alert('Contraseña incorrecta'); document.getElementById('adminPassword').focus(); }
+            } catch(e) { alert('Error de conexión'); }
+            btn.innerHTML = '<i class="fas fa-lock" aria-hidden="true"></i> Acceder'; btn.disabled = false;
+        }
+
+        async function loadData() {
+            try {
+                const [adminRes, acercadeRes] = await Promise.all([fetch(`${API_URL}/api/admin-data`), fetch(`${API_URL}/api/acercade`)]);
+                const adminData = await adminRes.json();
+                const acercadeData = await acercadeRes.json();
+                currentData = { contactos:adminData.contactos||[], pedidos:adminData.pedidos||[], catalogos:adminData.catalogos||[], acercade:acercadeData||{} };
+                _escapeCache.clear();
+                updateBadges();
+                if (document.getElementById('contentArea')) renderContent();
+            } catch(e) { console.error('Error cargando datos:', e); }
+        }
+
+        function updateBadges() {
+            const keys = ['contactos','pedidos','catalogos'];
+            const ids = ['contactosBadge','pedidosBadge','catalogosBadge'];
+            keys.forEach((k, i) => {
+                const el = document.getElementById(ids[i]);
+                if (el) el.textContent = (currentData[k]||[]).length;
+            });
+        }
+
+        function renderAdmin() {
+            document.getElementById('app').innerHTML = `
+                <div class="admin-wrapper">
+                    <nav class="sidebar" id="sidebar" aria-label="Menú principal del panel">
+                        <div class="sidebar-header">
+                            <img src="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg" alt="Logo FG-Studio" class="logo" width="45" height="45" loading="eager">
+                            <h4>FG-Studio</h4>
+                            <small>Administración</small>
+                        </div>
+                        <ul class="sidebar-menu" role="menubar">
+                            <li class="sidebar-section" role="none">Principal</li>
+                            <li role="none"><button class="menu-item ${currentTab==='dashboard'?'active':''}" data-tab="dashboard" role="menuitem"><i class="fas fa-th-large" aria-hidden="true"></i>Dashboard</button></li>
+                            <li class="sidebar-section" role="none">Gestión</li>
+                            <li role="none"><button class="menu-item ${currentTab==='catalogos'?'active':''}" data-tab="catalogos" role="menuitem"><i class="fas fa-images" aria-hidden="true"></i>Catálogos <span class="menu-badge" id="catalogosBadge" aria-label="Cantidad de catálogos">0</span></button></li>
+                            <li role="none"><button class="menu-item ${currentTab==='acercade'?'active':''}" data-tab="acercade" role="menuitem"><i class="fas fa-info-circle" aria-hidden="true"></i>Acerca de</button></li>
+                            <li class="sidebar-section" role="none">Clientes</li>
+                            <li role="none"><button class="menu-item ${currentTab==='contactos'?'active':''}" data-tab="contactos" role="menuitem"><i class="fas fa-envelope" aria-hidden="true"></i>Contactos <span class="menu-badge" id="contactosBadge" aria-label="Cantidad de contactos">0</span></button></li>
+                            <li role="none"><button class="menu-item ${currentTab==='pedidos'?'active':''}" data-tab="pedidos" role="menuitem"><i class="fas fa-shopping-cart" aria-hidden="true"></i>Pedidos <span class="menu-badge" id="pedidosBadge" aria-label="Cantidad de pedidos">0</span></button></li>
+                            <li class="sidebar-section" role="none">Sistema</li>
+                            <li role="none"><button class="menu-item" id="logoutBtn" role="menuitem"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>Cerrar Sesión</button></li>
+                        </ul>
+                    </nav>
+                    <main class="main-content" id="mainContent">
+                        <header class="top-bar">
+                            <h4 id="pageTitle">Dashboard</h4>
+                            <button class="btn-modern btn-outline-modern btn-sm-modern" id="refreshBtn" aria-label="Actualizar datos"><i class="fas fa-sync-alt" aria-hidden="true"></i> Actualizar</button>
+                        </header>
+                        <div id="contentArea" aria-live="polite" aria-atomic="true"></div>
+                    </main>
+                </div>`;
+
+            document.querySelectorAll('.menu-item[data-tab]').forEach(item => {
+                item.addEventListener('click', () => { currentTab = item.getAttribute('data-tab'); acercadeSubTab = 'hero'; renderAdmin(); updateBadges(); document.getElementById('mainContent').focus(); });
+            });
+            document.getElementById('logoutBtn').addEventListener('click', () => { localStorage.removeItem('admin_token'); isLoggedIn = false; if(_refreshTimer) clearInterval(_refreshTimer); renderLogin(); });
+            document.getElementById('refreshBtn').addEventListener('click', loadData);
+
+            const toggle = document.getElementById('menuToggle'), sidebar = document.getElementById('sidebar'), overlay = document.getElementById('sidebarOverlay');
+            function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('show'); overlay.setAttribute('aria-hidden','false'); toggle.setAttribute('aria-expanded','true'); }
+            function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); toggle.setAttribute('aria-expanded','false'); }
+            toggle.addEventListener('click', () => { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+            overlay.addEventListener('click', closeSidebar);
+            document.querySelectorAll('.menu-item[data-tab], #logoutBtn').forEach(item => { item.addEventListener('click', () => { if (window.innerWidth <= 768) closeSidebar(); }); });
+
+            updateBadges();
+            renderContent();
+        }
+
+        function renderContent() {
+            const title = document.getElementById('pageTitle'), area = document.getElementById('contentArea');
+            if (!area) return;
+            const pages = {
+                dashboard:{ title:'Dashboard', fn:renderDashboard },
+                catalogos:{ title:'Catálogos', fn:renderCatalogosTab },
+                acercade:{ title:'Acerca de', fn:renderAcercaDeTab },
+                contactos:{ title:'Contactos', fn:renderContactosTab },
+                pedidos:{ title:'Pedidos', fn:renderPedidosTab }
+            };
+            const page = pages[currentTab] || pages.dashboard;
+            title.textContent = page.title;
+            page.fn(area);
+        }
+
+        function renderDashboard(area) {
+            const c = currentData;
+            area.innerHTML = `
+                <div class="stats-grid" role="list" aria-label="Estadísticas generales">
+                    <div class="stat-card" role="listitem"><div class="icon" style="background:#dbeafe;color:#3b82f6;" aria-hidden="true"><i class="fas fa-images"></i></div><div class="number">${c.catalogos.length}</div><div class="label">Catálogos</div></div>
+                    <div class="stat-card" role="listitem"><div class="icon" style="background:#d1fae5;color:#10b981;" aria-hidden="true"><i class="fas fa-envelope"></i></div><div class="number">${c.contactos.length}</div><div class="label">Contactos</div></div>
+                    <div class="stat-card" role="listitem"><div class="icon" style="background:#fef3c7;color:#f59e0b;" aria-hidden="true"><i class="fas fa-shopping-cart"></i></div><div class="number">${c.pedidos.length}</div><div class="label">Pedidos</div></div>
+                    <div class="stat-card" role="listitem"><div class="icon" style="background:#ede9fe;color:#8b5cf6;" aria-hidden="true"><i class="fas fa-info-circle"></i></div><div class="number">${c.acercade && c.acercade.hero ? 'Configurado' : 'Pendiente'}</div><div class="label">Acerca de</div></div>
+                </div>
+                <div class="content-card"><h2 class="h5">Bienvenido al Panel de FG-Studio</h2><p class="text-muted">Gestiona todos los aspectos de tu sitio web desde aquí.</p></div>`;
+        }
+
+        function renderCatalogosTab(area) {
+            const catalogos = currentData.catalogos || [];
+            area.innerHTML = `
+                <div class="content-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap" style="gap:10px;">
+                        <h2 class="h5">Catálogos (${catalogos.length})</h2>
+                        <button class="btn-modern btn-primary-modern" onclick="showCatalogoModal()"><i class="fas fa-plus" aria-hidden="true"></i> Agregar Catálogo</button>
+                    </div>
+                    ${catalogos.length === 0 ? `
+                        <div class="text-center py-4"><i class="fas fa-images fa-3x text-muted mb-3" aria-hidden="true"></i><p>No hay catálogos registrados</p><button class="btn-modern btn-primary-modern" onclick="showCatalogoModal()"><i class="fas fa-plus" aria-hidden="true"></i> Agregar el primero</button></div>
+                    ` : `
+                        <div style="overflow-x:auto;" role="region" aria-label="Lista de catálogos" tabindex="0"><table class="table-modern" role="table"><caption class="sr-only">Tabla de catálogos</caption><thead><tr><th scope="col">#</th><th scope="col">Imagen</th><th scope="col">Nombre</th><th scope="col">Categoría</th><th scope="col">Descripción</th><th scope="col">Enlace</th><th scope="col">Acciones</th></tr></thead><tbody>${catalogos.map((c, i) => `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td><img src="${escapeAttr(c.image)}" style="width:40px;height:30px;object-fit:cover;border-radius:4px;" width="40" height="30" alt="Imagen de ${escapeAttr(c.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><i class="fas fa-image" style="color:#cbd5e1;font-size:1.2rem;display:none;" aria-hidden="true"></i></td>
+                                <td><strong>${escapeHtml(c.name)}</strong></td>
+                                <td><span style="background:#e2e8f0;padding:3px 8px;border-radius:10px;font-size:.75rem;">${escapeHtml(c.category)}</span></td>
+                                <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escapeAttr(c.descripcion||'Sin descripción')}">${escapeHtml(c.descripcion||'-')}</td>
+                                <td><a href="${escapeAttr(c.link)}" target="_blank" rel="noopener noreferrer" style="color:#3b82f6;font-size:.8rem;">Visitar <span class="sr-only">catálogo ${escapeAttr(c.name)}</span></a></td>
+                                <td style="white-space:nowrap;">
+                                    <button class="btn-modern btn-primary-modern btn-sm-modern" onclick="editCatalogo(${c.id})" title="Editar ${escapeAttr(c.name)}" aria-label="Editar ${escapeAttr(c.name)}" style="margin-right:4px;"><i class="fas fa-edit" aria-hidden="true"></i></button>
+                                    <button class="btn-modern btn-danger-modern btn-sm-modern" onclick="deleteCatalogo(${c.id})" title="Eliminar ${escapeAttr(c.name)}" aria-label="Eliminar ${escapeAttr(c.name)}"><i class="fas fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>`).join('')}</tbody></table></div>
+                    `}
+                </div>`;
+        }
+
+        function showCatalogoModal() {
+            editingCatalogoId = null;
+            _lastFocusBeforeModal = document.activeElement;
+            const oldModal = document.getElementById('catalogoModal');
+            if (oldModal) oldModal.remove();
+
+            const modal = document.createElement('div');
+            modal.className = 'modal-backdrop-custom';
+            modal.id = 'catalogoModal';
+            modal.setAttribute('role','dialog');
+            modal.setAttribute('aria-modal','true');
+            modal.setAttribute('aria-labelledby','modalTitle');
+            modal.innerHTML = `
+                <div class="modal-custom">
+                    <div class="modal-header-custom">
+                        <h3 id="modalTitle">Agregar Catálogo</h3>
+                        <button class="btn-modern btn-outline-modern btn-sm-modern" onclick="closeCatalogoModal()" aria-label="Cerrar modal"><i class="fas fa-times" aria-hidden="true"></i></button>
+                    </div>
+                    <div>
+                        <label for="catName" class="form-label">Nombre <span aria-hidden="true">*</span><span class="sr-only">(obligatorio)</span></label>
+                        <input class="form-control-modern" id="catName" placeholder="Ej: Tienda La Reina" required aria-required="true">
+                        <label for="catCategory" class="form-label">Categoría <span aria-hidden="true">*</span><span class="sr-only">(obligatorio)</span></label>
+                        <input class="form-control-modern" id="catCategory" placeholder="Ej: Moda, Tecnología, Hogar..." required aria-required="true">
+                        <label for="catLink" class="form-label">URL del enlace <span aria-hidden="true">*</span><span class="sr-only">(obligatorio)</span></label>
+                        <input class="form-control-modern" id="catLink" placeholder="https://..." type="url" required aria-required="true">
+                        <label for="catImageFile" class="form-label">Imagen del catálogo <span aria-hidden="true">*</span><span class="sr-only">(obligatorio)</span></label>
+                        <input type="file" class="form-control-modern" id="catImageFile" accept="image/jpeg,image/png,image/webp,image/jpg" required aria-required="true" aria-describedby="imgHelp">
+                        <small id="imgHelp" class="text-muted" style="display:block;margin-top:-8px;margin-bottom:12px;">Selecciona una imagen (JPG, PNG, WebP). Máximo 2MB.</small>
+                        <div id="imagePreviewContainer" style="width:100%;min-height:100px;margin-top:8px;text-align:center;display:none;">
+                            <img id="imagePreview" style="max-width:100%;max-height:150px;object-fit:contain;border-radius:8px;border:2px solid #10b981;" alt="Vista previa de la imagen seleccionada">
+                        </div>
+                        <label for="catDesc" class="form-label">Descripción</label>
+                        <textarea class="form-control-modern" id="catDesc" rows="2" placeholder="Breve descripción"></textarea>
+                        <div id="uploadProgress" style="display:none;margin-top:10px;" role="status" aria-live="polite">
+                            <div class="progress-bar-custom"><div id="progressFill" class="progress-fill"></div></div>
+                            <p class="small text-muted mt-2">Subiendo imagen...</p>
+                        </div>
+                        <button class="btn-modern btn-primary-modern w-100 mt-3" id="saveCatBtn" onclick="saveCatalogo()"><i class="fas fa-save" aria-hidden="true"></i> Guardar Catálogo</button>
+                    </div>
+                </div>`;
+            document.body.appendChild(modal);
+            trapFocus(modal);
+
+            document.getElementById('catImageFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const previewContainer = document.getElementById('imagePreviewContainer');
+                const previewImg = document.getElementById('imagePreview');
+                if (file) {
+                    if (file.size > 2*1024*1024) { alert('La imagen no debe superar los 2MB'); this.value=''; previewContainer.style.display='none'; return; }
+                    const reader = new FileReader();
+                    reader.onload = function(ev) { previewImg.src=ev.target.result; previewContainer.style.display='block'; };
+                    reader.readAsDataURL(file);
+                } else { previewContainer.style.display='none'; }
+            });
+            modal.addEventListener('click', e => { if(e.target===modal) closeCatalogoModal(); });
+        }
+
+        function closeCatalogoModal() {
+            const modal = document.getElementById('catalogoModal');
+            if (modal) modal.remove();
+            if (_lastFocusBeforeModal) { _lastFocusBeforeModal.focus(); _lastFocusBeforeModal = null; }
+        }
+
+        async function saveCatalogo() {
+            const btn = document.getElementById('saveCatBtn');
+            const name = document.getElementById('catName').value.trim();
+            const category = document.getElementById('catCategory').value.trim();
+            const link = document.getElementById('catLink').value.trim();
+            const descripcion = document.getElementById('catDesc').value.trim();
+            const imageFile = document.getElementById('catImageFile').files[0];
+            if (!name) { alert('Ingresa el nombre'); document.getElementById('catName').focus(); return; }
+            if (!category) { alert('Ingresa la categoría'); document.getElementById('catCategory').focus(); return; }
+            if (!link) { alert('Ingresa el enlace'); document.getElementById('catLink').focus(); return; }
+            if (!imageFile) { alert('Selecciona una imagen'); document.getElementById('catImageFile').focus(); return; }
+            if (imageFile.size > 2*1024*1024) { alert('La imagen no debe superar los 2MB'); return; }
+
+            document.getElementById('uploadProgress').style.display='block';
+            document.getElementById('progressFill').style.width='0%';
+            btn.innerHTML='<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Subiendo...'; btn.disabled=true;
+            try {
+                const imageUrl = await uploadImageToSupabase(imageFile);
+                if (!imageUrl) throw new Error('No se pudo subir la imagen');
+                document.getElementById('progressFill').style.width='50%';
+                btn.innerHTML='<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Guardando...';
+                const res = await fetch(`${API_URL}/api/catalogos`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({name,category,link,image:imageUrl,descripcion}) });
+                document.getElementById('progressFill').style.width='100%';
+                if (res.ok) { alert('Catálogo agregado exitosamente'); closeCatalogoModal(); loadData(); }
+                else { const err=await res.json(); alert('Error: '+(err.error||'No se pudo guardar')); }
+            } catch(error) { alert('Error al guardar: '+error.message); }
+            finally { document.getElementById('uploadProgress').style.display='none'; btn.innerHTML='<i class="fas fa-save" aria-hidden="true"></i> Guardar Catálogo'; btn.disabled=false; }
+        }
+
+        function editCatalogo(id) {
+            const catalogo = currentData.catalogos.find(c=>c.id===id);
+            if (!catalogo) return;
+            editingCatalogoId = id;
+            showCatalogoModal();
+            setTimeout(()=>{
+                document.getElementById('catName').value=catalogo.name||'';
+                document.getElementById('catCategory').value=catalogo.category||'';
+                document.getElementById('catLink').value=catalogo.link||'';
+                document.getElementById('catDesc').value=catalogo.descripcion||'';
+                document.getElementById('catImageFile').removeAttribute('required');
+                document.getElementById('catImageFile').removeAttribute('aria-required');
+                if (catalogo.image) { const pc=document.getElementById('imagePreviewContainer'), pi=document.getElementById('imagePreview'); pi.src=catalogo.image; pi.alt='Imagen actual de '+catalogo.name; pc.style.display='block'; }
+                const btn=document.getElementById('saveCatBtn'); btn.innerHTML='<i class="fas fa-edit" aria-hidden="true"></i> Actualizar Catálogo'; btn.onclick=updateCatalogo;
+                document.getElementById('modalTitle').textContent='Editar Catálogo';
+            },100);
+        }
+
+        async function updateCatalogo() {
+            const btn=document.getElementById('saveCatBtn');
+            const name=document.getElementById('catName').value.trim();
+            const category=document.getElementById('catCategory').value.trim();
+            const link=document.getElementById('catLink').value.trim();
+            const descripcion=document.getElementById('catDesc').value.trim();
+            const imageFile=document.getElementById('catImageFile').files[0];
+            if(!name||!category||!link){alert('Complete los campos obligatorios');return;}
+            btn.innerHTML='<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Actualizando...'; btn.disabled=true;
+            try {
+                let imageUrl=null;
+                if(imageFile){if(imageFile.size>2*1024*1024){alert('La imagen no debe superar los 2MB');btn.disabled=false;return;} imageUrl=await uploadImageToSupabase(imageFile);}
+                const updateData={name,category,link,descripcion}; if(imageUrl) updateData.image=imageUrl;
+                const res=await fetch(`${API_URL}/api/catalogos/${editingCatalogoId}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(updateData)});
+                if(res.ok){alert('Catálogo actualizado');closeCatalogoModal();editingCatalogoId=null;loadData();}
+                else{const err=await res.json();alert('Error: '+(err.error||'No se pudo actualizar'));}
+            }catch(error){alert('Error de conexión');}
+            finally{btn.innerHTML='<i class="fas fa-edit" aria-hidden="true"></i> Actualizar Catálogo';btn.disabled=false;}
+        }
+
+        async function deleteCatalogo(id) {
+            const cat = currentData.catalogos.find(c=>c.id===id);
+            const name = cat ? cat.name : 'este catálogo';
+            if (!confirm('¿Eliminar "'+name+'" permanentemente?')) return;
+            try { const res=await fetch(`${API_URL}/api/catalogos/${id}`,{method:'DELETE'}); if(res.ok){alert('Catálogo eliminado');loadData();}else{alert('Error al eliminar');} }
+            catch(e){alert('Error de conexión');}
+        }
+
+        function renderAcercaDeTab(area) {
+            area.innerHTML = `
+                <div class="content-card">
+                    <div class="tabs-container" role="tablist" aria-label="Secciones de Acerca de">
+                        <button class="tab-btn ${acercadeSubTab==='hero'?'active':''}" onclick="switchAcercaDeTab('hero',this)" role="tab" aria-selected="${acercadeSubTab==='hero'}" id="tab-hero" aria-controls="panel-acercade">Hero</button>
+                        <button class="tab-btn ${acercadeSubTab==='mision'?'active':''}" onclick="switchAcercaDeTab('mision',this)" role="tab" aria-selected="${acercadeSubTab==='mision'}" id="tab-mision" aria-controls="panel-acercade">Misión/Visión</button>
+                        <button class="tab-btn ${acercadeSubTab==='valores'?'active':''}" onclick="switchAcercaDeTab('valores',this)" role="tab" aria-selected="${acercadeSubTab==='valores'}" id="tab-valores" aria-controls="panel-acercade">Valores</button>
+                        <button class="tab-btn ${acercadeSubTab==='historia'?'active':''}" onclick="switchAcercaDeTab('historia',this)" role="tab" aria-selected="${acercadeSubTab==='historia'}" id="tab-historia" aria-controls="panel-acercade">Historia</button>
+                        <button class="tab-btn ${acercadeSubTab==='stats'?'active':''}" onclick="switchAcercaDeTab('stats',this)" role="tab" aria-selected="${acercadeSubTab==='stats'}" id="tab-stats" aria-controls="panel-acercade">Estadísticas</button>
+                        <button class="tab-btn ${acercadeSubTab==='equipo'?'active':''}" onclick="switchAcercaDeTab('equipo',this)" role="tab" aria-selected="${acercadeSubTab==='equipo'}" id="tab-equipo" aria-controls="panel-acercade">Equipo</button>
+                    </div>
+                    <div id="acercaDeFormContainer" role="tabpanel" aria-labelledby="tab-${acercadeSubTab}" id="panel-acercade"></div>
+                </div>`;
+            renderAcercaDeForm();
+        }
+
+        function switchAcercaDeTab(tab, btnEl) {
+            acercadeSubTab=tab;
+            document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-selected','false');});
+            if(btnEl){btnEl.classList.add('active');btnEl.setAttribute('aria-selected','true');}
+            renderAcercaDeForm();
+        }
+
+        function renderAcercaDeForm() {
+            const container=document.getElementById('acercaDeFormContainer'); if(!container)return;
+            const data=currentData.acercade||{}; let html='';
+            const get=id=>document.getElementById(id)?.value||'';
+            if(acercadeSubTab==='hero'){
+                html=`<h3>Sección Hero</h3><label for="heroTitulo" class="form-label">Título</label><input class="form-control-modern" id="heroTitulo" value="${escapeAttr(data.hero?.titulo||'')}"><label for="heroSubtitulo" class="form-label">Subtítulo</label><input class="form-control-modern" id="heroSubtitulo" value="${escapeAttr(data.hero?.subtitulo||'')}"><button class="btn-modern btn-primary-modern mt-3" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>`;
+            } else if(acercadeSubTab==='mision'){
+                const m=data.mision_vision||[{},{}];
+                html=m.map((v,i)=>`<fieldset class="mb-3 p-3 border rounded"><legend>${i===0?'Misión':'Visión'}</legend><label for="mvTitulo${i}" class="form-label">Título</label><input class="form-control-modern" id="mvTitulo${i}" value="${escapeAttr(v.titulo||'')}" placeholder="Título"><label for="mvDesc${i}" class="form-label">Descripción</label><textarea class="form-control-modern" id="mvDesc${i}" placeholder="Descripción">${escapeHtml(v.descripcion||'')}</textarea><label for="mvIcono${i}" class="form-label">Icono</label><input class="form-control-modern" id="mvIcono${i}" value="${escapeAttr(v.icono||'')}" placeholder="Icono (ej: fa-star)"></fieldset>`).join('')+'<button class="btn-modern btn-primary-modern" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>';
+            } else if(acercadeSubTab==='valores'){
+                const v=data.valores||[{},{},{},{}];
+                html=v.map((x,i)=>`<fieldset class="mb-3 p-3 border rounded"><legend>Valor ${i+1}</legend><label for="valTitulo${i}" class="form-label">Título</label><input class="form-control-modern" id="valTitulo${i}" value="${escapeAttr(x.titulo||'')}" placeholder="Título"><label for="valDesc${i}" class="form-label">Descripción</label><input class="form-control-modern" id="valDesc${i}" value="${escapeAttr(x.descripcion||'')}" placeholder="Descripción"><label for="valIcono${i}" class="form-label">Icono</label><input class="form-control-modern" id="valIcono${i}" value="${escapeAttr(x.icono||'')}" placeholder="Icono"></fieldset>`).join('')+'<button class="btn-modern btn-primary-modern" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>';
+            } else if(acercadeSubTab==='historia'){
+                const h=data.historia||[{},{},{},{},{}];
+                html=h.map((x,i)=>`<fieldset class="mb-3 p-3 border rounded"><legend>Hito ${i+1}</legend><label for="histAnio${i}" class="form-label">Año</label><input class="form-control-modern" id="histAnio${i}" value="${escapeAttr(x.anio||'')}" placeholder="Año"><label for="histTitulo${i}" class="form-label">Título</label><input class="form-control-modern" id="histTitulo${i}" value="${escapeAttr(x.titulo||'')}" placeholder="Título"><label for="histDesc${i}" class="form-label">Descripción</label><textarea class="form-control-modern" id="histDesc${i}" placeholder="Descripción">${escapeHtml(x.descripcion||'')}</textarea></fieldset>`).join('')+'<button class="btn-modern btn-primary-modern" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>';
+            } else if(acercadeSubTab==='stats'){
+                const s=data.estadisticas||[{},{},{},{}];
+                html=s.map((x,i)=>`<fieldset class="mb-3 p-3 border rounded"><legend>Estadística ${i+1}</legend><label for="statNum${i}" class="form-label">Número</label><input class="form-control-modern" type="number" id="statNum${i}" value="${x.numero||0}" placeholder="Número"><label for="statSuf${i}" class="form-label">Sufijo</label><input class="form-control-modern" id="statSuf${i}" value="${escapeAttr(x.sufijo||'')}" placeholder="Sufijo (ej: +)"><label for="statEtq${i}" class="form-label">Etiqueta</label><input class="form-control-modern" id="statEtq${i}" value="${escapeAttr(x.etiqueta||'')}" placeholder="Etiqueta"></fieldset>`).join('')+'<button class="btn-modern btn-primary-modern" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>';
+            } else if(acercadeSubTab==='equipo'){
+                const e=data.equipo||[{}];
+                html=e.map((x,i)=>`<fieldset class="mb-3 p-3 border rounded"><legend>Miembro ${i+1}</legend><label for="eqNombre${i}" class="form-label">Nombre</label><input class="form-control-modern" id="eqNombre${i}" value="${escapeAttr(x.nombre||'')}" placeholder="Nombre"><label for="eqCargo${i}" class="form-label">Cargo</label><input class="form-control-modern" id="eqCargo${i}" value="${escapeAttr(x.cargo||'')}" placeholder="Cargo"><label for="eqDesc${i}" class="form-label">Descripción</label><input class="form-control-modern" id="eqDesc${i}" value="${escapeAttr(x.descripcion||'')}" placeholder="Descripción"><label for="eqImg${i}" class="form-label">URL Imagen</label><input class="form-control-modern" id="eqImg${i}" value="${escapeAttr(x.imagen||'')}" placeholder="URL Imagen"></fieldset>`).join('')+'<button class="btn-modern btn-primary-modern" onclick="saveAcercaDe()"><i class="fas fa-save" aria-hidden="true"></i> Guardar</button>';
+            }
+            container.innerHTML=html;
+        }
+
+        async function saveAcercaDe() {
+            let data={};
+            const get=id=>document.getElementById(id)?.value||'';
+            if(acercadeSubTab==='hero'){data.hero={titulo:get('heroTitulo'),subtitulo:get('heroSubtitulo')};}
+            else if(acercadeSubTab==='mision'){data.mision_vision=[];for(let i=0;i<2;i++){const t=get(`mvTitulo${i}`);if(t)data.mision_vision.push({titulo:t,descripcion:get(`mvDesc${i}`),icono:get(`mvIcono${i}`)||'fa-star'});}}
+            else if(acercadeSubTab==='valores'){data.valores=[];for(let i=0;i<4;i++){const t=get(`valTitulo${i}`);if(t)data.valores.push({titulo:t,descripcion:get(`valDesc${i}`),icono:get(`valIcono${i}`)||'fa-star'});}}
+            else if(acercadeSubTab==='historia'){data.historia=[];for(let i=0;i<5;i++){const a=get(`histAnio${i}`);if(a)data.historia.push({anio:a,titulo:get(`histTitulo${i}`),descripcion:get(`histDesc${i}`)});}}
+            else if(acercadeSubTab==='stats'){data.estadisticas=[];for(let i=0;i<4;i++){const e=get(`statEtq${i}`);if(e)data.estadisticas.push({numero:parseInt(get(`statNum${i}`))||0,sufijo:get(`statSuf${i}`)||'+',etiqueta:e});}}
+            else if(acercadeSubTab==='equipo'){data.equipo=[];for(let i=0;i<3;i++){const n=get(`eqNombre${i}`);if(n)data.equipo.push({nombre:n,cargo:get(`eqCargo${i}`),descripcion:get(`eqDesc${i}`),imagen:get(`eqImg${i}`),linkedin:'',github:''});}}
+            try{const res=await fetch(`${API_URL}/api/acercade`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(res.ok){alert('Guardado exitosamente');loadData();}else{alert('Error al guardar');}}
+            catch(e){alert('Error de conexión');}
+        }
+
+        function renderContactosTab(area) {
+            const contactos=currentData.contactos||[];
+            area.innerHTML=`<div class="content-card"><h2 class="h5">Mensajes (${contactos.length})</h2>${contactos.length===0?'<p class="text-muted">No hay mensajes</p>':`<div style="overflow-x:auto;" role="region" aria-label="Lista de mensajes" tabindex="0"><table class="table-modern" role="table"><caption class="sr-only">Tabla de mensajes de contacto</caption><thead><tr><th scope="col">Nombre</th><th scope="col">Teléfono</th><th scope="col">Email</th><th scope="col">Mensaje</th><th scope="col">Fecha</th><th scope="col"><span class="sr-only">Acciones</span></th></tr></thead><tbody>${contactos.map(c=>`<tr><td>${escapeHtml(c.nombre)}</td><td>${escapeHtml(c.telefono)}</td><td>${escapeHtml(c.email)}</td><td>${escapeHtml(c.mensaje)}</td><td>${c.fecha||'-'}</td><td><button class="btn-modern btn-danger-modern btn-sm-modern" onclick="deleteContacto(${c.id})" aria-label="Eliminar mensaje de ${escapeAttr(c.nombre)}"><i class="fas fa-trash" aria-hidden="true"></i></button></td></tr>`).join('')}</tbody></table></div>`}</div>`;
+        }
+
+        function renderPedidosTab(area) {
+            const pedidos=currentData.pedidos||[];
+            area.innerHTML=`<div class="content-card"><h2 class="h5">Pedidos (${pedidos.length})</h2>${pedidos.length===0?'<p class="text-muted">No hay pedidos</p>':`<div style="overflow-x:auto;" role="region" aria-label="Lista de pedidos" tabindex="0"><table class="table-modern" role="table"><caption class="sr-only">Tabla de pedidos</caption><thead><tr><th scope="col">Cliente</th><th scope="col">Producto</th><th scope="col">Total</th><th scope="col">Estado</th><th scope="col">Fecha</th></tr></thead><tbody>${pedidos.map(p=>`<tr><td>${escapeHtml(p.cliente)}</td><td>${escapeHtml(p.producto)}</td><td>${p.total||'-'}</td><td>${p.estado||'Pendiente'}</td><td>${p.fecha||'-'}</td></tr>`).join('')}</tbody></table></div>`}</div>`;
+        }
+
+        async function deleteContacto(id) {
+            if(!confirm('¿Eliminar este contacto?'))return;
+            try{await fetch(`${API_URL}/api/contactos/${id}`,{method:'DELETE'});loadData();}
+            catch(e){alert('Error al eliminar');}
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>
