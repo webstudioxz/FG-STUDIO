@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca de | FG-Studio</title>
+    <meta name="description" content="Conoce la historia, misión y equipo de FG-Studio. Expertos en catálogos digitales y automatización.">
+    <meta name="author" content="FG-Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0c15">
+    <link rel="canonical" href="https://pacho-fg.onrender.com/hacercade">
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg" id="siteFavicon">
+    
+    <!-- Preconexiones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Recursos críticos -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FG-Studio",
+        "url": "https://pacho-fg.onrender.com",
+        "logo": "https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg"
+    }
+    </script>
+    
+    <style>
+        :root {
+            --pri: #2dd4bf;
+            --pri-d: #14b8a6;
+            --sec: #3b82f6;
+            --bg: #0a0c15;
+            --card: rgba(17, 24, 39, 0.65);
+            --txt: #f1f5f9;
+            --txt2: #cbd5e1;
+            --dim: #94a3b8;
+            --bdr: rgba(45, 212, 191, 0.12);
+            --bdr-g: rgba(45, 212, 191, 0.35);
+            --r: 14px;
+        }
+        
+        [data-theme="light"] {
+            --bg: #f0f4f8;
+            --card: rgba(255, 255, 255, 0.88);
+            --txt: #0f172a;
+            --txt2: #334155;
+            --dim: #64748b;
+            --bdr: rgba(0, 0, 0, 0.08);
+            --bdr-g: rgba(20, 184, 166, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        /* Skip link */
+        .skip {
+            position: absolute;
+            top: -100%;
+            left: 16px;
+            background: var(--pri);
+            color: #0a0c15;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            z-index: 9999;
+            text-decoration: none;
+            transition: top 0.2s;
+        }
+        
+        .skip:focus {
+            top: 16px;
+        }
+        
+        /* Navbar */
+        .nav {
+            background: rgba(10, 12, 21, 0.85);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--bdr);
+            padding: 13px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        
+        .nav.sc {
+            padding: 9px 0;
+            background: rgba(10, 12, 21, 0.95);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        [data-theme="light"] .nav {
+            background: rgba(255, 255, 255, 0.92);
+        }
+        
+        .nav-c {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nb {
+            font-family: 'Space Grotesk', monospace;
+            font-weight: 700;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--pri), var(--sec));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        
+        .nb img {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            object-fit: cover;
+        }
+        
+        .nl {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+        }
+        
+        .nl a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 7px 12px;
+            border-radius: 7px;
+            transition: all 0.2s;
+        }
+        
+        .nl a:hover,
+        .nl a:focus-visible {
+            color: var(--txt);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .nl a.on {
+            color: var(--pri);
+            font-weight: 600;
+        }
+        
+        .nt {
+            display: none;
+            background: none;
+            border: 1px solid var(--bdr);
+            color: var(--txt);
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .nt {
+                display: flex;
+            }
+            
+            .nl {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 12, 21, 0.97);
+                flex-direction: column;
+                padding: 10px;
+                border-bottom: 1px solid var(--bdr);
+            }
+            
+            .nl.op {
+                display: flex;
+            }
+            
+            .nl a {
+                padding: 11px 14px;
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            padding: 110px 0 70px;
+            text-align: center;
+            min-height: 260px;
+        }
+        
+        [data-theme="light"] .hero {
+            background: linear-gradient(135deg, #1e3a5f, #334155);
+        }
+        
+        .ht {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--pri));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.15;
+        }
+        
+        /* Loading */
+        .ld {
+            text-align: center;
+            padding: 35px;
+            color: var(--dim);
+        }
+        
+        .ld i {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        /* Cards */
+        .mc {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--bdr);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .mc:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .mi {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--pri), var(--sec));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+        
+        .mi i {
+            font-size: 2rem;
+            color: #fff;
+        }
+        
+        /* Timeline */
+        .tl {
+            position: relative;
+            padding: 35px 0;
+        }
+        
+        .tl::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--pri), var(--sec));
+        }
+        
+        .tli {
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .tld {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 18px;
+            background: var(--pri);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.3);
+            z-index: 1;
+        }
+        
+        .tlc {
+            width: 44%;
+            padding: 18px;
+            background: var(--card);
+            backdrop-filter: blur(8px);
+            border-radius: 14px;
+            border: 1px solid var(--bdr);
+            transition: all 0.3s;
+        }
+        
+        .tli:nth-child(odd) .tlc {
+            margin-left: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .tl::before {
+                left: 18px;
+            }
+            
+            .tld {
+                left: 18px;
+            }
+            
+            .tlc {
+                width: calc(100% - 45px);
+                margin-left: 45px !important;
+            }
+        }
+        
+        /* Team cards */
+        .tc {
+            background: var(--card);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--bdr);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.3s;
+            margin-bottom: 24px;
+        }
+        
+        .tc:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tim {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 320/260;
+            object-fit: cover;
+            background: #1e293b;
+            display: block;
+        }
+        
+        .tinf {
+            padding: 22px;
+            text-align: center;
+        }
+        
+        .tn {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--txt);
+        }
+        
+        .tr {
+            color: var(--pri);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        /* Stats section */
+        .ts {
+            background: linear-gradient(135deg, var(--pri), var(--sec));
+            padding: 50px 0;
+            color: #fff;
+        }
+        
+        .sn {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        
+        /* Footer */
+        .ft {
+            background: rgba(1, 1, 1, 0.8);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid var(--bdr);
+            padding: 40px 0 16px;
+            transition: background 0.3s;
+        }
+        
+        [data-theme="light"] .ft {
+            background: rgba(255, 255, 255, 0.92);
+        }
+        
+        .fg {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .fg {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+        
+        .ft h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .ft p,
+        .ft li {
+            font-size: 0.8rem;
+            color: var(--dim);
+        }
+        
+        .ft a {
+            color: var(--dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .ft a:hover {
+            color: var(--pri);
+        }
+        
+        .sr {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .sb {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--bdr);
+            background: var(--card);
+            color: var(--dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .sb:hover {
+            color: var(--txt);
+            border-color: var(--bdr-g);
+            transform: translateY(-2px);
+        }
+        
+        .ft ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .ft li {
+            margin-bottom: 4px;
+        }
+        
+        .ft hr {
+            border: none;
+            border-top: 1px solid var(--bdr);
+            margin: 16px 0;
+        }
+        
+        .thm {
+            position: fixed;
+            bottom: 18px;
+            right: 18px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--bdr);
+            background: var(--card);
+            color: var(--txt);
+            font-size: 0.9rem;
+            z-index: 99;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+        
+        .thm:hover {
+            border-color: var(--bdr-g);
+        }
+        
+        .py-5 {
+            padding: 3rem 0;
+        }
+        
+        .mt-3 {
+            margin-top: 1rem;
+        }
+        
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip">Saltar al contenido</a>
+    
+    <header>
+        <nav class="nav" id="nav" aria-label="Navegación principal">
+            <div class="nav-c">
+                <a class="nb" href="/" aria-label="FG-Studio Inicio">
+                    <img src="https://i.ibb.co/LDG7Gf2d/fotor-ai-2025020222510.jpg" alt="" width="36" height="36" loading="eager">
+                    <span>FG-Studio</span>
+                </a>
+                <button class="nt" id="nt" aria-label="Menú" aria-expanded="false" aria-controls="nm">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nl" id="nm" role="menubar">
+                    <li role="none"><a href="/" role="menuitem">Inicio</a></li>
+                    <li role="none"><a href="/#servicios" role="menuitem">Servicios</a></li>
+                    <li role="none"><a href="/hacercade" class="on" role="menuitem" aria-current="page">Nosotros</a></li>
+                    <li role="none"><a href="/contactar" role="menuitem">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hT">
+            <div style="max-width: 700px; margin: 0 auto; padding: 0 20px;">
+                <h1 class="ht" id="hT">Cargando...</h1>
+                <p class="ld" id="hS" style="color: rgba(255, 255, 255, 0.5); font-size: 1.05rem; margin-top: 12px;" aria-live="polite"></p>
+            </div>
+        </section>
+        
+        <!-- Misión y Visión -->
+        <section class="py-5" aria-labelledby="mV">
+            <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+                <h2 class="sr-only" id="mV">Misión y Visión</h2>
+                <div class="ld" id="mVc" role="status" aria-live="polite">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando...</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Valores -->
+        <section class="py-5" id="vS" style="display: none;" aria-labelledby="vT">
+            <div style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.6rem;" id="vT">Nuestros Valores</h2>
+                <div class="row" id="vC" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;"></div>
+            </div>
+        </section>
+        
+        <!-- Historia (Timeline) -->
+        <section class="py-5" id="hS" style="display: none;" aria-labelledby="hT2">
+            <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.6rem;" id="hT2">Nuestra Historia</h2>
+                <div class="tl" id="hC" role="list" aria-label="Línea de tiempo"></div>
+            </div>
+        </section>
+        
+        <!-- Estadísticas -->
+        <section class="ts" id="sS" style="display: none;" aria-labelledby="sT">
+            <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+                <h2 class="sr-only" id="sT">Estadísticas</h2>
+                <div id="sC" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; text-align: center;"></div>
+            </div>
+        </section>
+        
+        <!-- Equipo -->
+        <section class="py-5" id="eS" style="display: none;" aria-labelledby="eT">
+            <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+                <h2 style="text-align: center; margin-bottom: 30px; font-size: 1.6rem;" id="eT">Conoce al Equipo</h2>
+                <div id="eC" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;" role="list" aria-label="Equipo"></div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- CTA Section -->
+    <section style="background: linear-gradient(135deg, var(--pri), var(--sec)); padding: 45px 0;" aria-labelledby="cT">
+        <div style="max-width: 700px; margin: 0 auto; padding: 0 20px; text-align: center;">
+            <h2 style="color: #0a0c15; font-size: 1.2rem; font-weight: 700;" id="cT">¿Listo para transformar tu negocio?</h2>
+            <p style="color: rgba(10, 12, 21, 0.6); margin-bottom: 16px;">Únete a los clientes que ya confían en FG-Studio</p>
+            <a href="/contactar" style="background: #0a0c15; color: #fff; padding: 10px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.2s; display: inline-block;">Contáctanos ahora</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="ft" role="contentinfo">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div class="fg">
+                <div>
+                    <h4>FG-Studio</h4>
+                    <p>Transformamos ideas en experiencias digitales.</p>
+                    <nav class="sr" aria-label="Redes sociales">
+                        <a href="https://www.facebook.com/share/18aBXWunUa/" target="_blank" class="sb" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/fgstudio" target="_blank" class="sb" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5353571569" target="_blank" class="sb" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </nav>
+                </div>
+                <div>
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/#servicios">Servicios</a></li>
+                        <li><a href="/hacercade">Nosotros</a></li>
+                        <li><a href="/contactar">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contacto</h4>
+                    <address style="font-style: normal;">
+                        <p class="mb-2">
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <a href="mailto:webstudioxz@gmail.com">webstudioxz@gmail.com</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <a href="tel:+5353571569">+53 5357-15-69</a>
+                        </p>
+                        <p>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            Centro Habana, Cuba
+                        </p>
+                    </address>
+                </div>
+            </div>
+            <hr aria-hidden="true">
+            <p style="text-align: center;">&copy; 2026 FG-Studio.</p>
+        </div>
+    </footer>
+    
+    <button class="thm" id="thm" aria-label="Cambiar tema">
+        <i class="fas fa-sun"></i>
+    </button>
+    
+    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .row {
+            display: grid;
+        }
+        
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+        
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+    </style>
+    
+    <script>
+        (function() {
+            'use strict';
+            
+            const API = window.location.origin;
+            
+            // ============================================
+            // TEMA
+            // ============================================
+            function initTheme() {
+                const saved = localStorage.getItem('fg-theme');
+                const theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+                
+                const themeBtn = document.getElementById('thm');
+                if (themeBtn) {
+                    const icon = themeBtn.querySelector('i');
+                    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    themeBtn.addEventListener('click', () => {
+                        const current = document.documentElement.getAttribute('data-theme');
+                        const next = current === 'light' ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', next);
+                        localStorage.setItem('fg-theme', next);
+                        icon.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    });
+                }
+            }
+            
+            // ============================================
+            // FAVICON
+            // ============================================
+            function initFavicon() {
+                fetch(API + '/api/acercade')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.site_settings && data.site_settings.logo) {
+                            const favicon = document.getElementById('siteFavicon');
+                            if (favicon) favicon.href = data.site_settings.logo;
+                        }
+                    })
+                    .catch(() => {});
+            }
+            
+            // ============================================
+            // NAVEGACIÓN MÓVIL
+            // ============================================
+            function initMobileNav() {
+                const navToggle = document.getElementById('nt');
+                const navMenu = document.getElementById('nm');
+                
+                if (navToggle && navMenu) {
+                    navToggle.addEventListener('click', () => {
+                        const isOpen = navMenu.classList.toggle('op');
+                        navToggle.setAttribute('aria-expanded', isOpen);
+                        navToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                    });
+                    
+                    navMenu.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            navMenu.classList.remove('op');
+                            navToggle.setAttribute('aria-expanded', 'false');
+                            navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        });
+                    });
+                }
+                
+                // Navbar scroll effect
+                let ticking = false;
+                const nav = document.getElementById('nav');
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            if (nav) nav.classList.toggle('sc', window.scrollY > 40);
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
+            }
+            
+            // ============================================
+            // ESCAPE HTML
+            // ============================================
+            function escapeHtml(str) {
+                if (!str) return '';
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return String(str).replace(/[&<>"']/g, char => map[char]);
+            }
+            
+            // ============================================
+            // CONTADORES ANIMADOS
+            // ============================================
+            function initCounters() {
+                const counters = document.querySelectorAll('.ctr');
+                if (!counters.length) return;
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseInt(el.getAttribute('data-target'));
+                            if (!isNaN(target)) {
+                                animateCounter(el, target);
+                            }
+                            observer.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => observer.observe(counter));
+            }
+            
+            function animateCounter(el, target) {
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 35));
+                const interval = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        el.textContent = target;
+                        clearInterval(interval);
+                    } else {
+                        el.textContent = current;
+                    }
+                }, 30);
+            }
+            
+            // ============================================
+            // CARGAR DATOS
+            // ============================================
+            async function loadData() {
+                try {
+                    const res = await fetch(API + '/api/acercade');
+                    if (!res.ok) throw new Error('Error fetching data');
+                    const data = await res.json();
+                    
+                    if (!data || !data.hero) {
+                        showError();
+                        return;
+                    }
+                    
+                    // Hero
+                    document.getElementById('hT').textContent = data.hero.titulo || 'FG-Studio';
+                    document.getElementById('hS').textContent = data.hero.subtitulo || '';
+                    
+                    // Misión y Visión
+                    if (data.mision_vision && data.mision_vision.length) {
+                        document.getElementById('mVc').innerHTML = `
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+                                ${data.mision_vision.map(m => `
+                                    <article class="mc">
+                                        <div class="mi" aria-hidden="true">
+                                            <i class="fas ${m.icono || 'fa-star'}"></i>
+                                        </div>
+                                        <h3 style="margin-bottom: 10px;">${escapeHtml(m.titulo)}</h3>
+                                        <p style="color: var(--dim);">${escapeHtml(m.descripcion)}</p>
+                                    </article>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                    
+                    // Valores
+                    if (data.valores && data.valores.length) {
+                        document.getElementById('vS').style.display = 'block';
+                        document.getElementById('vC').innerHTML = data.valores.map(v => `
+                            <div style="text-align: center;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--pri), var(--sec)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px;" aria-hidden="true">
+                                    <i class="fas ${v.icono || 'fa-star'} fa-xl" style="color: #fff;"></i>
+                                </div>
+                                <h3 style="font-size: 1rem; font-weight: 700;">${escapeHtml(v.titulo)}</h3>
+                                <p style="font-size: 0.82rem; color: var(--dim);">${escapeHtml(v.descripcion)}</p>
+                            </div>
+                        `).join('');
+                    }
+                    
+                    // Historia (Timeline)
+                    if (data.historia && data.historia.length) {
+                        document.getElementById('hS').style.display = 'block';
+                        document.getElementById('hC').innerHTML = data.historia.map(h => `
+                            <div class="tli" role="listitem">
+                                <div class="tld" aria-hidden="true"></div>
+                                <div class="tlc">
+                                    <h3 style="color: var(--pri); font-size: 1.1rem;">${escapeHtml(h.anio)}</h3>
+                                    <h4 style="font-size: 0.95rem; margin: 4px 0;">${escapeHtml(h.titulo)}</h4>
+                                    <p style="color: var(--dim); font-size: 0.85rem;">${escapeHtml(h.descripcion)}</p>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                    
+                    // Estadísticas
+                    if (data.estadisticas && data.estadisticas.length) {
+                        document.getElementById('sS').style.display = 'block';
+                        document.getElementById('sC').innerHTML = data.estadisticas.map(s => `
+                            <div>
+                                <div class="sn" aria-label="${s.numero}${s.sufijo || '+'} ${escapeHtml(s.etiqueta)}">
+                                    <span class="ctr" data-target="${s.numero}">0</span>${escapeHtml(s.sufijo || '+')}
+                                </div>
+                                <p style="font-size: 1rem;">${escapeHtml(s.etiqueta)}</p>
+                            </div>
+                        `).join('');
+                        initCounters();
+                    }
+                    
+                    // Equipo
+                    if (data.equipo && data.equipo.length) {
+                        document.getElementById('eS').style.display = 'block';
+                        document.getElementById('eC').innerHTML = data.equipo.map(e => `
+                            <article class="tc" role="listitem">
+                                <img class="tim" 
+                                     src="${escapeHtml(e.imagen || '')}" 
+                                     alt="${escapeHtml(e.nombre)}" 
+                                     width="320" 
+                                     height="260" 
+                                     loading="lazy" 
+                                     decoding="async"
+                                     onerror="this.alt='Sin imagen disponible'">
+                                <div class="tinf">
+                                    <h3 class="tn">${escapeHtml(e.nombre)}</h3>
+                                    <p class="tr">${escapeHtml(e.cargo)}</p>
+                                    <p style="color: var(--dim); font-size: 0.85rem;">${escapeHtml(e.descripcion || '')}</p>
+                                    <div class="sr">
+                                        ${e.linkedin ? `<a href="${escapeHtml(e.linkedin)}" target="_blank" rel="noopener" class="sb" aria-label="LinkedIn de ${escapeHtml(e.nombre)}"><i class="fab fa-linkedin-in"></i></a>` : ''}
+                                        ${e.github ? `<a href="${escapeHtml(e.github)}" target="_blank" rel="noopener" class="sb" aria-label="GitHub de ${escapeHtml(e.nombre)}"><i class="fab fa-github"></i></a>` : ''}
+                                    </div>
+                                </div>
+                            </article>
+                        `).join('');
+                    }
+                    
+                } catch (error) {
+                    console.warn('Error loading data:', error);
+                    showError();
+                }
+            }
+            
+            function showError() {
+                document.getElementById('hT').textContent = 'FG-Studio';
+                document.getElementById('hS').textContent = 'Información no disponible';
+                document.getElementById('mVc').innerHTML = `
+                    <div style="text-align: center; padding: 30px;">
+                        <i class="fas fa-info-circle" style="font-size: 2.5rem; color: var(--dim); margin-bottom: 12px; display: block;" aria-hidden="true"></i>
+                        <p>Actualizando contenido.</p>
+                    </div>
+                `;
+            }
+            
+            // ============================================
+            // INICIALIZACIÓN
+            // ============================================
+            function init() {
+                initTheme();
+                initFavicon();
+                initMobileNav();
+                loadData();
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+</body>
+</html>
